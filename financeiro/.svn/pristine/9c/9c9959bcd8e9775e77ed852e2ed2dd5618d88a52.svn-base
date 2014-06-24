@@ -1,0 +1,51 @@
+package br.com.entity;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "orcamento_has_produto")
+public class LinksPerfil extends Entidade {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public LinksPerfil() {
+		id = new LinksPerfilId();
+	}
+
+	@EmbeddedId
+	private LinksPerfilId id;
+
+	@ManyToOne
+	@JoinColumn(name = "idLink_menu", referencedColumnName = "idLink_menu")
+	@MapsId("linkMenuId")
+	private LinkMenu linkMenu;
+	@ManyToOne
+	@JoinColumn(name = "idPerfilusuario", referencedColumnName = "idPerfilusuario")
+	@MapsId("perfilUsuarioId")
+	private PerfilUsuario perfilUsuario;
+
+	public LinkMenu getLinkMenu() {
+		return linkMenu;
+	}
+
+	public void setLinkMenu(LinkMenu idLinksMenu) {
+		this.linkMenu = idLinksMenu;
+	}
+
+	public PerfilUsuario getPerfilUsuario() {
+		return perfilUsuario;
+	}
+
+	public void setPerfilUsuario(PerfilUsuario idPerfilusuario) {
+		this.perfilUsuario = idPerfilusuario;
+	}
+
+}

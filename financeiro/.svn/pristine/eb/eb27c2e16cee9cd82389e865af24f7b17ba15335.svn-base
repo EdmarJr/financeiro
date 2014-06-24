@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>financeiro-web</display-name>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>/index.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<!-- Roles -->
+	<security-role>
+		<description>Administrators</description>
+		<role-name>ADMINISTRADOR</role-name>
+	</security-role>
+	<security-role>
+		<description>Management</description>
+		<role-name>mgmt</role-name>
+	</security-role>
+	<security-role>
+		<description>Corretor</description>
+		<role-name>corretor</role-name>
+	</security-role>
+	<!-- Resource / Role Mapping -->
+	<security-constraint>
+		<display-name>Admin Area</display-name>
+		<web-resource-collection>
+			<web-resource-name>admin_resources</web-resource-name>
+			<url-pattern>/jsf/admin/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>For admin role only</description>
+			<role-name>ADMINISTRADOR</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	<!-- <security-constraint> -->
+	<!-- <display-name>Corretor Area</display-name> -->
+	<!-- <web-resource-collection> -->
+	<!-- <web-resource-name>corretor_resources</web-resource-name> -->
+	<!-- <url-pattern>/privado/corretor/*</url-pattern> -->
+	<!-- <http-method>GET</http-method> -->
+	<!-- <http-method>POST</http-method> -->
+	<!-- </web-resource-collection> -->
+	<!-- <auth-constraint> -->
+	<!-- <description>For corretor role only</description> -->
+	<!-- <role-name>corretor</role-name> -->
+	<!-- </auth-constraint> -->
+	<!-- <user-data-constraint> -->
+	<!-- <transport-guarantee>NONE</transport-guarantee> -->
+	<!-- </user-data-constraint> -->
+	<!-- </security-constraint> -->
+	<!-- Login Prompt -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/jsf/login/login.xhtml</form-login-page>
+			<form-error-page>/error.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<!-- <welcome-file-list> -->
+	<!-- <welcome-file>/index.xhtml</welcome-file> -->
+	<!-- </welcome-file-list> -->
+
+	<!-- <filter> -->
+	<!-- <filter-name>loginFilter</filter-name> -->
+	<!-- <filter-class>br.com.financeiro.login.LoginFilter</filter-class> -->
+	<!-- </filter> -->
+
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>loginFilter</filter-name> -->
+	<!-- <url-pattern>/admin/*</url-pattern> -->
+	<!-- </filter-mapping> -->
+
+
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>bootstrap</param-value>
+	</context-param>
+
+
+</web-app>

@@ -1,0 +1,33 @@
+package br.com.dao;
+
+
+import java.util.Date;
+import java.util.List;
+
+import br.com.login.LinkPerfil;
+import br.com.login.Loja;
+import br.com.login.Menu;
+import br.com.login.PerfilUsuario;
+import br.com.login.Usuario;
+
+public interface LoginDAO extends GenericDAO<Usuario> {
+	
+	Usuario recuperarPorId(Long id);
+	
+	List<Usuario> pesquisar(Usuario tipoPagamento);
+	
+	Usuario recuperarPorNome(String nome);
+
+	List<Usuario> consultaPagamento(Usuario usuario);
+	
+	
+	List<Usuario> listar(Date dataInicio, Date dataFim);
+	
+	public Usuario validaUsuario(Usuario usuario);
+	public List<Menu> listaMenuPerfil(Usuario usuario);
+	public List<LinkPerfil> listaLinks(Usuario usuario);
+	public List<PerfilUsuario> listaPerfilPorLoja(Loja loja) ;
+
+	Usuario obterUsuarioPorLogin(Usuario setLogin);
+
+}

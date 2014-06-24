@@ -1,0 +1,66 @@
+package br.com.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class LinksPerfilId implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Long linkMenuId;
+	private Long perfilUsuarioId;
+
+	public Long getLinkMenuId() {
+		return linkMenuId;
+	}
+
+	public void setLinkMenuId(Long linkMenuId) {
+		this.linkMenuId = linkMenuId;
+	}
+
+	public Long getPerfilUsuarioId() {
+		return perfilUsuarioId;
+	}
+
+	public void setPerfilUsuarioId(Long perfilUsuarioId) {
+		this.perfilUsuarioId = perfilUsuarioId;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((linkMenuId == null) ? 0 : linkMenuId.hashCode());
+		result = prime * result
+				+ ((perfilUsuarioId == null) ? 0 : perfilUsuarioId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LinksPerfilId other = (LinksPerfilId) obj;
+		if (linkMenuId == null) {
+			if (other.linkMenuId != null)
+				return false;
+		} else if (!linkMenuId.equals(other.linkMenuId))
+			return false;
+		if (perfilUsuarioId == null) {
+			if (other.perfilUsuarioId != null)
+				return false;
+		} else if (!perfilUsuarioId.equals(other.perfilUsuarioId))
+			return false;
+		return true;
+	}
+
+}

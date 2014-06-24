@@ -1,0 +1,74 @@
+package br.com.entity;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "link_menu")
+public class LinkMenu extends Entidade {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "idLink_menu")
+	private Long id;
+
+	@ManyToOne
+	@JoinColumn(name = "idMenu", referencedColumnName = "idMenu")
+	private Menu menu;
+
+	@Column(name = "descricao")
+	private String descricao;
+
+	@Column(name = "pagina")
+	private String pagina;
+
+	@OneToMany(mappedBy = "linkMenu")
+	private List<LinksPerfil> perfis;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getPagina() {
+		return pagina;
+	}
+
+	public void setPagina(String pagina) {
+		this.pagina = pagina;
+	}
+
+}
