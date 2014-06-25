@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: sosthenes.soares
 Build-Jdk: 1.7.0_25
+=======
+Built-By: edmar.junior
+Build-Jdk: 1.7.0_51
+>>>>>>> branch 'master' of https://github.com/EdmarJr/financeiro
 Created-By: Maven Integration for Eclipse
 
