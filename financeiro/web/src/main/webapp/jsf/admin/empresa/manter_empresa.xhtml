@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xml:lang="pt-BR" lang="pt-BR"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+<h:outputStylesheet name="estilo.css" library="css" />
+</h:head> 
+<body> 
+
+<ui:composition template="/commonLayout.xhtml">
+ <ui:define name="content">
+ 
+    
+	 <h:form id="principal">
+
+				<p:panel header="Cadastro de Empresa" id="painel_cadastro" style="margin-bottom:10px;">
+					<p:messages id="messages" autoUpdate="true" closable="true" />
+					<p:panelGrid columns="2">
+						<p:outputLabel value=" Estado :" />
+						<p:selectOneMenu value="#{empresaMB.empresa.estado}" id="idEstado" converter="converter.ConverterEstado" required="true" >
+							<f:selectItem itemLabel="Selecione um Estado" />
+							<f:ajax event="change" render="idCidade" listener="#{empresaMB.listCidade()}" />	
+							<f:selectItems value="#{estadoMB.estados}" var="estado" itemLabel="#{estado.descricao}" itemValue="#{estado}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value=" Cidade :" />
+						<p:selectOneMenu value="#{empresaMB.empresa.cidade}" id="idCidade" converter="converter.ConverterCidade" required="true"  >
+							<f:selectItem itemLabel="Selecione uma Cidade" />
+							<f:selectItems value="#{empresaMB.cidades}" var="cidade" itemLabel="#{cidade.descricao}" itemValue="#{cidade}" />
+						</p:selectOneMenu>
+
+
+
+					</p:panelGrid>
+
+					
+					<p:panelGrid columns="1">
+						<p:outputLabel value=" atividadeEconomica :" />
+						<p:inputText value="#{empresaMB.empresa.atividadeEconomica}" id="atividadeEconomica" size="40" />
+
+					</p:panelGrid>
+					
+					<p:panelGrid columns="1">
+						<p:outputLabel value=" cep :" />
+						<p:inputText value="#{empresaMB.empresa.cep}" id="cep" size="40" />
+</p:panelGrid>
+<p:panelGrid columns="1">
+
+						<p:outputLabel value=" cnpj :" />
+						<p:inputText value="#{empresaMB.empresa.cnpj}" id="cnpj" size="40" />
+</p:panelGrid>
+<p:panelGrid columns="1">
+
+						<p:outputLabel value=" email :" />
+						<p:inputText value="#{empresaMB.empresa.email}" id="email" size="40" />
+</p:panelGrid>
+<p:panelGrid columns="1">
+
+						<p:outputLabel value=" endereco :" />
+						<p:inputText value="#{empresaMB.empresa.endereco}" id="endereco" size="40" />
+</p:panelGrid>
+<p:panelGrid columns="1">
+
+						<p:outputLabel value=" nomeFantasia :" />
+						<p:inputText value="#{empresaMB.empresa.nomeFantasia}" id="nomeFantasia" size="40" />
+</p:panelGrid>
+<p:panelGrid columns="1">
+
+						<p:outputLabel value=" razaoSocial :" />
+						<p:inputText value="#{empresaMB.empresa.razaoSocial}" id="razaoSocial" size="40" />
+</p:panelGrid>
+<p:panelGrid columns="1">
+
+						<p:outputLabel value=" telefone1 :" />
+						<p:inputText value="#{empresaMB.empresa.telefone1}" id="telefone1" size="40" />
+</p:panelGrid>
+<p:panelGrid columns="1">
+
+						<p:outputLabel value=" telefone 2 :" />
+						<p:inputText value="#{empresaMB.empresa.telefone2}" id="telefone2" size="40" />
+
+	</p:panelGrid>
+					
+					
+				</p:panel>
+						<p:commandButton action="#{empresaMB.adiciona()}" value=" Salvar " />
+
+
+
+	 </h:form>
+	 
+	 
+	 
+	 
+	 
+</ui:define>
+ 
+  
+    	</ui:composition>
+
+
+</body> 
+</html>
