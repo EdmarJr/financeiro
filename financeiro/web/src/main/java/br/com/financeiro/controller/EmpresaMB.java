@@ -8,7 +8,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.entity.Cidade;
 import br.com.entity.Empresa;
+import br.com.financeiro.service.CidadeService;
 import br.com.financeiro.service.EmpresaService;
 
 @ManagedBean
@@ -23,13 +25,23 @@ public class EmpresaMB extends BasicoMB{
 	@EJB
 	private EmpresaService empresaService;
 	
-	private List<Empresa> empresas  = new ArrayList<Empresa>();
+	@EJB
+	private CidadeService cidadeService;
 	
-	private Empresa empresa = new Empresa();
+	private List<Empresa> empresas;
 	
+	private Empresa empresa;
+	
+	private Cidade cidade;
+	
+	private List<Cidade> cidades  = new ArrayList<Cidade>();
 	
 	@PostConstruct
 	private void init() {
+		
+		if(cidade==null)
+			cidade = new Cidade();
+		
 		empresas = empresaService.getEmpresas();
 
 	}
@@ -66,10 +78,15 @@ public class EmpresaMB extends BasicoMB{
 
 	@Override
 	public void listar() {
-		// TODO Auto-generated method stub
-		
+		empresas = empresaService.pesquisaPorParametro(empresa);
 	}
 
+	
+	public void listCidade() {
+		cidade.setEstado(getEmpresa().getEstado());
+		cidades = cidadeService.recuperarPorParametro(cidade);
+	}
+	
 	@Override
 	public void limpar() {
 		// TODO Auto-generated method stub
@@ -80,6 +97,22 @@ public class EmpresaMB extends BasicoMB{
 	public void editar() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public List<Cidade> getCidades() {
+		return cidades;
+	}
+
+	public void setCidades(List<Cidade> cidades) {
+		this.cidades = cidades;
 	}
 	 
 	

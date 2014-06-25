@@ -33,8 +33,6 @@ public class MenuMB extends BasicoMB {
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private LoginService loginService;
-	HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-			.getExternalContext().getSession(true);
 
 	private List<Menu> listaMenu = new ArrayList<Menu>();
 
@@ -50,7 +48,9 @@ public class MenuMB extends BasicoMB {
 	private void init() {
 
 		if (listaLinks == null || listaLinks.isEmpty()) {
-			setUsuario(usuarioServices.obterUsuarioLogado());
+			if(getUsuario()==null || getUsuario().getId()==null)
+				setUsuario(usuarioServices.obterUsuarioLogado());
+			
 			listaLinks = loginService.listaLinks(getUsuario());
 		}
 

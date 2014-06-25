@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import br.com.dao.EmpresaDAO;
 import br.com.entity.Empresa;
 
 @Stateless
@@ -16,6 +18,9 @@ public class EmpresaService {
 	
 	@PersistenceContext
 	private EntityManager manager;
+	
+	@Inject
+	private EmpresaDAO empresaDAO;
 
 	public void adiciona(Empresa empresa) {
 		this.manager.merge(empresa);
@@ -43,5 +48,9 @@ public class EmpresaService {
 		TypedQuery<Empresa> query = this.manager.createQuery("select x from Empresa x where idEmpresa = :id", Empresa.class);
 		query.setParameter("id", empresa.getId());
 		return query.getSingleResult();
+	}
+
+	public List<Empresa> pesquisaPorParametro(Empresa empresa) {
+		return empresaDAO.recuperarPorParametro(empresa);
 	}
 }

@@ -55,6 +55,7 @@ public abstract class BasicoMB implements Serializable {
 	}
 
 	public void setUsuario(Usuario usuario) {
+		session.setAttribute("userManager", usuario);
 		this.usuario = usuario;
 	}
 	public HttpSession getSession() {
