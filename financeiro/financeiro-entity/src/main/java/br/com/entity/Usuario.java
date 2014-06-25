@@ -40,6 +40,10 @@ public class Usuario extends Entidade implements Serializable {
 	@JoinColumn(name = "idPerfilUsuario")
 	private PerfilUsuario idPerfilUsuario;
 
+	@ManyToOne
+	@JoinColumn(name = "idFuncionario_empresa")
+	private FuncionarioEmpresa idFuncionario_empresa;
+
 	@ManyToMany
 	@JoinTable(name = "usuario_has_grupo", joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = { @JoinColumn(name = "usuariogrupo_id") })
 	private List<UsuarioGrupo> grupos;
@@ -123,6 +127,14 @@ public class Usuario extends Entidade implements Serializable {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public FuncionarioEmpresa getIdFuncionario_empresa() {
+		return idFuncionario_empresa;
+	}
+
+	public void setIdFuncionario_empresa(FuncionarioEmpresa idFuncionario_empresa) {
+		this.idFuncionario_empresa = idFuncionario_empresa;
 	}
 
 }

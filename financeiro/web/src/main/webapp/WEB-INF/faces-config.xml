@@ -29,4 +29,11 @@
 		</resource-bundle>
 	</application>
 
+
+<converter>
+     <converter-id>converter.ConverterEmpresa</converter-id>
+     <converter-class>br.com.financeiro.util.ConverterEmpresa</converter-class>
+</converter>
+
+
 </faces-config>

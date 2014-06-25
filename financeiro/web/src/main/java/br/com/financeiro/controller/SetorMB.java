@@ -33,7 +33,11 @@ public class SetorMB extends BasicoMB{
 	
 	@PostConstruct
 	private void init() {
-
+		if(setor==null)
+			setor = new SetorEmpresa();
+		
+		if(empresa==null)
+			empresa = new Empresa();
 
 	}
 	

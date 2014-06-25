@@ -14,37 +14,39 @@
 <ui:composition template="/commonLayout.xhtml">
  <ui:define name="content">
  
+    
 	 <h:form id="principal">
 
-				<p:panel header="Cadastro de Setor" id="painel_cadastro"
-					style="margin-bottom:10px;">
+
+
+				<p:panel header="Cadastro de Funções" id="painel_cadastro" style="margin-bottom:10px;">
 					<p:messages id="messages" autoUpdate="true" closable="true" />
 					<p:panelGrid columns="1">
 						<p:outputLabel value=" Lojas :" />
-						<p:selectOneMenu value="#{setorMB.empresa}" id="idEmpresa" converter="converter.ConverterEmpresa" required="true" >
+						<p:selectOneMenu value="#{funcaoMB.empresa}" id="idEmpresa" converter="converter.ConverterEmpresa" required="true" >
 							<f:selectItem itemLabel="Selecione uma empresa" />
-							<f:ajax event="change" render="listaSetor" listener="#{setorMB.listaSetores()}" />
+							<f:ajax event="change" render="listaCargo" listener="#{funcaoMB.listaCargoes()}" />
 							<f:selectItems value="#{empresaMB.empresas}" var="empresa" itemLabel="#{empresa.nomeFantasia}" itemValue="#{empresa}" />
 						</p:selectOneMenu>
 					</p:panelGrid>
 					<p:panelGrid columns="1">
-						<p:outputLabel value=" Nome da Setor :" />
-						<h:inputText value="#{setorMB.setorEmpresa.descricao}" />
+						<p:outputLabel value=" Nome da Função :" />
+						<h:inputText value="#{funcaoMB.funcaoEmpresa.descricao}" />
 
 					</p:panelGrid>
 				</p:panel>
-						<p:commandButton action="#{setorMB.adiciona()}" value=" Salvar " update="listaSetor" />
+						<p:commandButton action="#{funcaoMB.adiciona()}" value=" Salvar " update="listaCargo" />
 
 
-				<h1>Lista de Setores</h1>
-	 <p:dataTable value ="#{setorMB.setores}" var ="setor" id="listaSetor">
-		 <p:column headerText="Nome da setor">
-		 	<p:outputLabel value ="#{setor.descricao}"/>
+				<h1>Lista de Cargos</h1>
+	 <p:dataTable value ="#{funcaoMB.funcaoes}" var ="cargo" id="listaCargo">
+		 <p:column headerText="Nome da cargo">
+		 	<p:outputLabel value ="#{cargo.descricao}"/>
 		 </p:column>
 		 <p:column headerText="Ação" >
 					 <p:commandLink title="Excluir" update=":formExcluir:Excluir"
                                 oncomplete="confirmation.show()" immediate="true" value="excluir" >                                                    
-                                <f:setPropertyActionListener target="#{setorMB.setor}"  value="#{setor}"  />
+                                <f:setPropertyActionListener target="#{funcaoMB.funcaoEmpresa}"  value="#{cargo}"  />
                         </p:commandLink>
 					
 				</p:column>
@@ -57,14 +59,14 @@
                 
             <p:dialog header="Excluir" widgetVar="confirmation" modal="true" id="Excluir">      
                                   
-                <h:outputText value="Você gostaria de Deletar o #{setorMB.setorEmpresa.descricao}?" />                
+                <h:outputText value="Você gostaria de Deletar o #{funcaoMB.funcaoEmpresa.descricao}?" />                
                 
                 <br/>
                 <br/>
                 
                 <p:commandButton id="confirm" value="Sim"
-                        actionListener="#{setorMB.remover()}"
-                        update=":principal:listaSetor"
+                        actionListener="#{funcaoMB.remover()}"
+                        update=":principal:listaCargo"
                         oncomplete="confirmation.hide()" />
                 
                  &nbsp;
