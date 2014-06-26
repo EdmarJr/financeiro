@@ -1,3 +1,6 @@
 .ui-panelgrid {
 	border-style: hidden;
 }
+.ui-panelgrid td {
+	border-style: hidden;
+}
