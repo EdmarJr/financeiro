@@ -19,23 +19,8 @@
 				<p:panel
 					header="#{msg['consultar.funcionarios.titulo.panel.filtrar.pesquisa']}"
 					id="painel_cadastro" style="margin-bottom:10px;">
-					<p:messages id="messages" autoUpdate="true" closable="true" />
-						<p:panelGrid styleClass="table" columns="2">
-							<p:outputLabel value=" Lojas :" />
-							<p:selectOneMenu value="#{funcaoMB.empresa}" id="idEmpresa"
-								converter="converter.ConverterEmpresa" required="true">
-								<f:selectItem itemLabel="Selecione uma empresa" />
-								<f:ajax event="change" render="listaCargo"
-									listener="#{funcaoMB.listaCargoes()}" />
-								<f:selectItems value="#{empresaMB.empresas}" var="empresa"
-									itemLabel="#{empresa.nomeFantasia}" itemValue="#{empresa}" />
-							</p:selectOneMenu>
-							<p:outputLabel value=" Nome da Função :" />
-							<h:inputText value="#{funcaoMB.funcaoEmpresa.descricao}" />
-						</p:panelGrid>
+					<p:dataTable></p:dataTable>
 				</p:panel>
-				<p:commandButton action="#{funcaoMB.adiciona()}" value=" Salvar "
-					update="listaCargo" />
 
 
 				<h1>Lista de Cargos</h1>
