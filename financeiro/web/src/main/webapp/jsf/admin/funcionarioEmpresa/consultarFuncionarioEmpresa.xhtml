@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xml:lang="pt-BR" lang="pt-BR"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	
+	<ui:composition template="/jsf/template/commonLayout.xhtml">
+		<ui:define name="title">#{msg['consultar.funcionarios.titulo']}</ui:define>
+		<ui:define name="content">
+
+
+			<h:form id="principal">
+
+
+
+				<p:panel
+					header="#{msg['consultar.funcionarios.titulo.panel.filtrar.pesquisa']}"
+					id="painel_cadastro" style="margin-bottom:10px;">
+					<p:messages id="messages" autoUpdate="true" closable="true" />
+						<p:panelGrid styleClass="table" columns="2">
+							<p:outputLabel value=" Lojas :" />
+							<p:selectOneMenu value="#{funcaoMB.empresa}" id="idEmpresa"
+								converter="converter.ConverterEmpresa" required="true">
+								<f:selectItem itemLabel="Selecione uma empresa" />
+								<f:ajax event="change" render="listaCargo"
+									listener="#{funcaoMB.listaCargoes()}" />
+								<f:selectItems value="#{empresaMB.empresas}" var="empresa"
+									itemLabel="#{empresa.nomeFantasia}" itemValue="#{empresa}" />
+							</p:selectOneMenu>
+							<p:outputLabel value=" Nome da Função :" />
+							<h:inputText value="#{funcaoMB.funcaoEmpresa.descricao}" />
+						</p:panelGrid>
+				</p:panel>
+				<p:commandButton action="#{funcaoMB.adiciona()}" value=" Salvar "
+					update="listaCargo" />
+
+
+				<h1>Lista de Cargos</h1>
+				<p:dataTable value="#{funcaoMB.funcaoes}" var="cargo"
+					id="listaCargo">
+					<p:column headerText="Nome da cargo">
+						<p:outputLabel value="#{cargo.descricao}" />
+					</p:column>
+					<p:column headerText="Ação">
+						<p:commandLink title="Excluir" update=":formExcluir:Excluir"
+							oncomplete="confirmation.show()" immediate="true" value="excluir">
+							<f:setPropertyActionListener target="#{funcaoMB.funcaoEmpresa}"
+								value="#{cargo}" />
+						</p:commandLink>
+
+					</p:column>
+				</p:dataTable>
+
+			</h:form>
+
+
+			<h:form id="formExcluir">
+
+				<p:dialog header="Excluir" widgetVar="confirmation" modal="true"
+					id="Excluir">
+
+					<h:outputText
+						value="Você gostaria de Deletar o #{funcaoMB.funcaoEmpresa.descricao}?" />
+
+					<br />
+					<br />
+
+					<p:commandButton id="confirm" value="Sim"
+						actionListener="#{funcaoMB.remover()}"
+						update=":principal:listaCargo" oncomplete="confirmation.hide()" />
+                
+                 &nbsp;
+                 
+                <p:commandButton id="decline" value="Não"
+						onclick="confirmation.hide()" type="button" />
+
+				</p:dialog>
+
+			</h:form>
+
+
+
+		</ui:define>
+
+
+	</ui:composition>
+
+
+</body>
+</html>
