@@ -1,3 +1,3 @@
-default.configuration=JPA
+default.configuration=jpa
 eclipse.preferences.version=1
 hibernate3.enabled=true

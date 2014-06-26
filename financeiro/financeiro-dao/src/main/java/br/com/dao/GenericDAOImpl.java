@@ -289,5 +289,10 @@ public class GenericDAOImpl<T extends Entidade> implements GenericDAO<T> {
 		}
 		return query.executeUpdate();
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public List<T> listarTodos(Class<T> clazz) {
+		Criteria criteria = obterCriteria(clazz);
+		return criteria.list();
+	}
 }
