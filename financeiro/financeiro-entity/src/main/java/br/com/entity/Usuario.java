@@ -32,7 +32,7 @@ public class Usuario extends Entidade implements Serializable {
 	private Long id;
 
 	@Column(name = "login", nullable = false)
-	private String login;
+	private String email;
 	@Column(name = "senha", nullable = false)
 	private String senha;
 
@@ -40,22 +40,10 @@ public class Usuario extends Entidade implements Serializable {
 	@JoinColumn(name = "idPerfilUsuario")
 	private PerfilUsuario idPerfilUsuario;
 
-	@ManyToOne
-	@JoinColumn(name = "idFuncionario_empresa")
-	private FuncionarioEmpresa idFuncionario_empresa;
-
 	@ManyToMany
 	@JoinTable(name = "usuario_has_grupo", joinColumns = { @JoinColumn(name = "usuario_id") }, inverseJoinColumns = { @JoinColumn(name = "usuariogrupo_id") })
 	private List<UsuarioGrupo> grupos;
 
-	@Column(name = "email")
-	private String email;
-	@Column(name = "endereco")
-	private String endereco;
-	@Column(name = "nome")
-	private String nome;
-	@Column(name = "telefone")
-	private String telefone;
 
 	public Long getId() {
 		return id;
@@ -65,12 +53,12 @@ public class Usuario extends Entidade implements Serializable {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSenha() {
@@ -95,46 +83,6 @@ public class Usuario extends Entidade implements Serializable {
 
 	public void setGrupos(List<UsuarioGrupo> grupos) {
 		this.grupos = grupos;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public FuncionarioEmpresa getIdFuncionario_empresa() {
-		return idFuncionario_empresa;
-	}
-
-	public void setIdFuncionario_empresa(FuncionarioEmpresa idFuncionario_empresa) {
-		this.idFuncionario_empresa = idFuncionario_empresa;
 	}
 
 }

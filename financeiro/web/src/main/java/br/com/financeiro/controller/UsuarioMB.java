@@ -32,7 +32,7 @@ public class UsuarioMB extends BasicoMB{
 	}
 
 	public void alterarSenha() {
-	System.out.println(usuarioService.obterUsuarioLogado().getLogin());
+	System.out.println(usuarioService.obterUsuarioLogado().getEmail());
 	}
 
 	public Usuario getUsuarioLocal() {

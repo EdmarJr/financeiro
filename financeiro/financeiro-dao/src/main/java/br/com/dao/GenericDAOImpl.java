@@ -19,10 +19,8 @@ import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.entity.Entidade;
 
-
-public class GenericDAOImpl<T extends Entidade> implements GenericDAO<T> {
+public class GenericDAOImpl<T> implements GenericDAO<T> {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(GenericDAOImpl.class);
 	

@@ -16,7 +16,7 @@ import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 
 import br.com.entity.LinkPerfil;
-import br.com.entity.LinksMenu;
+import br.com.entity.Link;
 import br.com.entity.Menu;
 import br.com.entity.Usuario;
 import br.com.financeiro.controller.BasicoMB;
@@ -75,13 +75,13 @@ public class MenuMB extends BasicoMB {
 				Menu menu = new Menu();
 				if (!listaMenu.contains(lista.getIdLinksMenu().getIdMenu())) {
 					menu = lista.getIdLinksMenu().getIdMenu();
-					LinksMenu link = new LinksMenu();
+					Link link = new Link();
 					link = lista.getIdLinksMenu();
 					menu.setLinksMenu(null);
 					menu.getLinksMenu().add(link);
 					listaMenu.add(menu);
 				} else {
-					LinksMenu link = new LinksMenu();
+					Link link = new Link();
 					link = lista.getIdLinksMenu();
 					listaMenu.get(listaMenu.size() - 1).getLinksMenu()
 							.add(link);
@@ -105,7 +105,7 @@ public class MenuMB extends BasicoMB {
 				submenu.setLabel(menu.getDescricao());
 				submenu.setId("menu_" + menu.getId().toString());
 
-				for (LinksMenu subMenu : menu.getLinksMenu()) {
+				for (Link subMenu : menu.getLinksMenu()) {
 					DefaultMenuItem item = new DefaultMenuItem();
 					item.setValue(subMenu.getDescricao());
 					item.setUrl(subMenu.getPagina());

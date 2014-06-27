@@ -20,17 +20,17 @@ public class LinkPerfil {
 
 	@ManyToOne
 	@JoinColumn(name="idLinksMenu")
-	private LinksMenu idLinksMenu = new LinksMenu();
+	private Link idLinksMenu = new Link();
 	
 	@ManyToOne
 	@JoinColumn(name="idPerfilusuario")
 	private PerfilUsuario idPerfilusuario = new PerfilUsuario();
 
-	public LinksMenu getIdLinksMenu() {
+	public Link getIdLinksMenu() {
 		return idLinksMenu;
 	}
 
-	public void setIdLinksMenu(LinksMenu idLinksMenu) {
+	public void setIdLinksMenu(Link idLinksMenu) {
 		this.idLinksMenu = idLinksMenu;
 	}
 

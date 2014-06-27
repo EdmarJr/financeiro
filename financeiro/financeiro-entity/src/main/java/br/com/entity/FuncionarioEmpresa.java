@@ -2,9 +2,6 @@ package br.com.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -12,20 +9,11 @@ import javax.persistence.Table;
 
 @Table(name = "funcionario_empresa")
 @Entity
-public class FuncionarioEmpresa extends Entidade {
+public class FuncionarioEmpresa extends Usuario {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idFuncionario_empresa")
-	private Long id;
-
-	@OneToOne
-	@JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
-	private Usuario usuario;
 
 	@ManyToOne
 	@JoinColumn(name = "idEmpresa", nullable = false, referencedColumnName = "idEmpresa")
@@ -43,8 +31,6 @@ public class FuncionarioEmpresa extends Entidade {
 	private String nome;
 	@Column(name = "telefone", nullable = false)
 	private String telefone;
-	@Column(name = "email", nullable = true)
-	private String email;
 	@Column(name = "endereco", nullable = false)
 	private String endereco;
 	@Column(name = "cep", nullable = true)
@@ -62,21 +48,6 @@ public class FuncionarioEmpresa extends Entidade {
 	@Column(name = "salarioLiquido", nullable = false)
 	private Double salarioLiquido;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 	public Empresa getEmpresa() {
 		return empresa;
@@ -117,14 +88,6 @@ public class FuncionarioEmpresa extends Entidade {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getEndereco() {

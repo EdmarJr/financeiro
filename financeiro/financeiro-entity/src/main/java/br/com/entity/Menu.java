@@ -28,7 +28,7 @@ public class Menu {
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="idLinksMenu")
-	private List<LinksMenu> linksMenu = new ArrayList<LinksMenu>();
+	private List<Link> linksMenu = new ArrayList<Link>();
 	
 
 	public Long getId() {
@@ -49,14 +49,14 @@ public class Menu {
 	
 
 
-	public List<LinksMenu> getLinksMenu() {
+	public List<Link> getLinksMenu() {
 		if(linksMenu==null || linksMenu.isEmpty()){
-			linksMenu = new ArrayList<LinksMenu>();
+			linksMenu = new ArrayList<Link>();
 		}
 		return linksMenu;
 	}
 
-	public void setLinksMenu(List<LinksMenu> linksMenu) {
+	public void setLinksMenu(List<Link> linksMenu) {
 		this.linksMenu = linksMenu;
 	}
 	

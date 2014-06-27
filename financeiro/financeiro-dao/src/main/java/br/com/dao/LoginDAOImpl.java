@@ -30,7 +30,7 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 	public Usuario validaUsuario(Usuario usuario) {
 		try {
 			Query query = manager.createNativeQuery("select x from Usuario x where x.login = :login and x.senha = :senha", Usuario.class);
-			query.setParameter("login", usuario.getLogin());
+			query.setParameter("login", usuario.getEmail());
 			query.setParameter("senha", usuario.getSenha());
 			return (Usuario)query.getSingleResult();
 		} catch (Exception e) {
@@ -146,7 +146,7 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 	@Override
 	public Usuario obterUsuarioPorLogin(String login) {
 		Criteria criteria = obterCriteria(Usuario.class);
-		criteria.add(Restrictions.eq("login", login));
+		criteria.add(Restrictions.eq("email", login));
 		return (Usuario) criteria.uniqueResult();
 	}
 

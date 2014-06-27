@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="linksmenu")
-public class LinksMenu {
+public class Link {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
