@@ -12,11 +12,10 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.entity.LinkPerfil;
 import br.com.entity.Menu;
-import br.com.entity.PerfilUsuario;
 import br.com.entity.Usuario;
 
 
-
+ 
 
 
 public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
@@ -98,6 +97,7 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> listar(Date dataInicio, Date dataFim) {
 		List<Usuario> lista = new ArrayList<Usuario>();
@@ -122,12 +122,14 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 		return lista;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Menu> listaMenuPerfil(Usuario usuario) {
 		Query query = manager.createNativeQuery("select x from Menu x where x.idPerfilusuario = :perfil", Menu.class);
 //		query.setParameter("perfil", usuario.getIdPerfilUsuario());
 		return (List<Menu>)query.getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<LinkPerfil> listaLinks(Usuario usuario) {
 		
 		Criteria criteria = obterCriteria(LinkPerfil.class);

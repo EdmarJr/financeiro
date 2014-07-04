@@ -8,7 +8,6 @@ import javax.inject.Inject;
 import br.com.dao.LoginDAO;
 import br.com.entity.LinkPerfil;
 import br.com.entity.Menu;
-import br.com.entity.PerfilUsuario;
 import br.com.entity.Usuario;
 
 @Stateless
