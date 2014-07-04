@@ -15,8 +15,6 @@ public class CidadeService {
 	private CidadeDAO cidadeDAO;
 	
 	public List<Cidade> recuperarPorParametro(Cidade cidade) {
-		System.out.println("teste");
-		
 		return cidadeDAO.recuperarPorParametro(cidade);
 	}
 
