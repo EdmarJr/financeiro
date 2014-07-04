@@ -15,7 +15,8 @@ public class CidadeService {
 	private CidadeDAO cidadeDAO;
 	
 	public List<Cidade> recuperarPorParametro(Cidade cidade) {
-		// TODO Auto-generated method stub
+		System.out.println("teste");
+		
 		return cidadeDAO.recuperarPorParametro(cidade);
 	}
 
