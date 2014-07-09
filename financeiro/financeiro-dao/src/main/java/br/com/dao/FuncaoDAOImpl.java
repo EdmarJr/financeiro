@@ -15,7 +15,7 @@ import br.com.entity.FuncaoEmpresa;
 
 
 
-public class FuncaoDAOImpl extends GenericDAOImpl<FuncaoEmpresa> implements FuncaoDAO {
+public class FuncaoDAOImpl extends GenericDAOImpl<FuncaoEmpresa> implements FuncaoEmpresaDAO {
 
 	@Override
 	public List<FuncaoEmpresa> getCargos() {

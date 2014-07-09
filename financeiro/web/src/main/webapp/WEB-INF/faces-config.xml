@@ -29,21 +29,10 @@
 		</resource-bundle>
 	</application>
 
-
 <converter>
-     <converter-id>converter.ConverterEmpresa</converter-id>
-     <converter-class>br.com.financeiro.util.ConverterEmpresa</converter-class>
-</converter>
-
-<converter>
-     <converter-id>converter.ConverterCidade</converter-id>
-     <converter-class>br.com.financeiro.util.ConverterCidade</converter-class>
-</converter>
-
-<converter>
-     <converter-id>converter.ConverterEstado</converter-id>
-     <converter-class>br.com.financeiro.util.ConverterEstado</converter-class>
-</converter>
+     <converter-for-class>br.com.interfaces.EntidadeComId</converter-for-class>
+     <converter-class>br.com.financeiro.converters.GenericConverter</converter-class>
+</converter> 
 
 
 </faces-config>

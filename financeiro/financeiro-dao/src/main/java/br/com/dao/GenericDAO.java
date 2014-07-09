@@ -17,6 +17,7 @@ public interface GenericDAO<T> {
 	
 	List<T> recuperarPorParametro(T entity);
 	
+	List<T> filtrar(T entidade);
 	
 	List<Object> executarQueryJPQL(String jpql) 
 			throws IllegalStateException;
@@ -45,6 +46,8 @@ public interface GenericDAO<T> {
 	
 	T executaJpqlUniqueResult(final StringBuilder jpql, final Properties parametros)
 			throws IllegalStateException;
+	
+	List<T> obterTodos(Class<T> clazz);
 	
 	void flush();
 	

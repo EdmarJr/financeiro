@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -15,16 +13,14 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
 import org.primefaces.model.menu.MenuModel;
 
-import br.com.entity.LinkPerfil;
 import br.com.entity.Link;
+import br.com.entity.LinkPerfil;
 import br.com.entity.Menu;
 import br.com.entity.Usuario;
 import br.com.financeiro.controller.BasicoMB;
 import br.com.financeiro.service.LoginService;
 import br.com.financeiro.service.UsuarioService;
 
-@ManagedBean
-@ViewScoped
 public class MenuMB extends BasicoMB {
 
 	/**

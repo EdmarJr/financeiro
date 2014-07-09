@@ -9,14 +9,18 @@ import br.com.dao.EstadoDAO;
 import br.com.entity.Estado;
 
 @Stateless
-public class EstadoService {
+public class EstadoService extends Service<Estado> {
 
 	@Inject
 	private EstadoDAO estadoDAO;
 	
 	public List<Estado> listaTodasEstados() {
-		// TODO Auto-generated method stub
-		return estadoDAO.recuperarTodos(Estado.class);
+		return obterTodos(Estado.class);
+	}
+
+	@Override
+	public EstadoDAO getDAO() {
+		return estadoDAO;
 	}
 
 	

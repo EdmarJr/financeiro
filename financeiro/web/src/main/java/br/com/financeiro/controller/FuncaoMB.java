@@ -11,7 +11,7 @@ import javax.faces.bean.ViewScoped;
 import br.com.entity.Empresa;
 import br.com.entity.FuncaoEmpresa;
 import br.com.financeiro.service.EmpresaService;
-import br.com.financeiro.service.FuncaoService;
+import br.com.financeiro.service.FuncaoEmpresaService;
 
 @ManagedBean
 @ViewScoped
@@ -22,7 +22,7 @@ public class FuncaoMB extends BasicoMB{
 	 */
 	private static final long serialVersionUID = -445431629703546070L;
 	@EJB
-	private FuncaoService funcaoService;
+	private FuncaoEmpresaService funcaoService;
 	@EJB
 	private EmpresaService empresaService;
 	

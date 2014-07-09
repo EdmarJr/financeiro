@@ -22,7 +22,7 @@
 					<p:panelGrid columns="1">
 						<p:outputLabel value=" Lojas :" />
 						<p:selectOneMenu value="#{funcaoMB.empresa}" id="idEmpresa"
-							converter="converter.ConverterEmpresa" required="true">
+							  required="true">
 							<f:selectItem itemLabel="Selecione uma empresa" />
 							<f:ajax event="change" render="listaCargo"
 								listener="#{funcaoMB.listaCargoes()}" />

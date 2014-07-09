@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.entity.Empresa;
 import br.com.entity.FuncaoEmpresa;
 
-public interface FuncaoDAO extends GenericDAO<FuncaoEmpresa>{
+public interface FuncaoEmpresaDAO extends GenericDAO<FuncaoEmpresa>{
 
 	public List<FuncaoEmpresa> getCargos();
 

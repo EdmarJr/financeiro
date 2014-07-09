@@ -24,8 +24,8 @@ public class FuncionarioEmpresa extends Usuario {
 	private SetorEmpresa setorEmpresa;
 
 	@OneToOne
-	@JoinColumn(name = "idFuncao", nullable = false, referencedColumnName = "idFuncao")
-	private Funcao funcao;
+	@JoinColumn(name = "idFuncao_empresa", nullable = false, referencedColumnName = "idFuncao_empresa")
+	private FuncaoEmpresa funcao;
 
 	@Column(name = "nome", nullable = false)
 	private String nome;
@@ -66,11 +66,11 @@ public class FuncionarioEmpresa extends Usuario {
 		this.setorEmpresa = setorEmpresa;
 	}
 
-	public Funcao getFuncao() {
+	public FuncaoEmpresa getFuncao() {
 		return funcao;
 	}
 
-	public void setFuncao(Funcao funcao) {
+	public void setFuncao(FuncaoEmpresa funcao) {
 		this.funcao = funcao;
 	}
 

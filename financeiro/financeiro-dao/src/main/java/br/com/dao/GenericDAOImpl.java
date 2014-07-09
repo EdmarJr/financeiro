@@ -1,6 +1,8 @@
 package br.com.dao;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -16,8 +18,13 @@ import javax.persistence.Query;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import br.com.utils.StringUtils;
 
 
 public class GenericDAOImpl<T> implements GenericDAO<T> {
@@ -42,6 +49,13 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 	public void excluir(T entity) {
 		manager.remove(sincronizar(entity));
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> obterTodos(Class<T> clazz) {
+		Criteria criteria = obterCriteria(clazz);
+		return criteria.list();
+		
+	}
 
 	@Override
 	public T sincronizar(T entity) {
@@ -54,7 +68,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		return newEntity == null ? entity : newEntity;
 	}
 	
-	protected Criteria obterCriteria(Class clazz) {
+	protected Criteria obterCriteria(@SuppressWarnings("rawtypes") Class clazz) {
 		return ((Session) manager.getDelegate()).createCriteria(clazz);
 	}
 
@@ -67,6 +81,54 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		} catch (NoResultException e) {
 			return null;
 		}
+	}
+	
+	public List<T> filtrar(T entidade) {
+		return filtrar(entidade, null, false, false, null, null);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<T> filtrar(T entidade, String order, Boolean asc,
+			boolean paginacao, Integer rowStart, Integer qntdRegistros) {
+		Criteria criteria = ((Session) manager.getDelegate()).createCriteria(entidade.getClass());
+		Field[] fields = entidade.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			String nameField = field.getName();
+			if(nameField.equals("serialVersionUID")) 
+				continue;
+			StringBuilder sb = new StringBuilder("get");
+			sb.append(StringUtils.primeiraLetraMaiuscula(nameField));
+			Object retornoGet = null;
+			try {
+				Method methodGet = entidade.getClass().getMethod(sb.toString());
+				if (methodGet != null) {
+					retornoGet = methodGet.invoke(entidade);
+				}
+			} catch (NoSuchMethodException | SecurityException
+					| IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (retornoGet != null && retornoGet instanceof String) {
+				criteria.add(Restrictions.like(nameField, (String) retornoGet,
+						MatchMode.ANYWHERE));
+			} else if (retornoGet != null && !retornoGet.equals("")) {
+				criteria.add(Restrictions.eq(nameField, retornoGet));
+			}
+		}
+		if (order != null) {
+			if (asc) {
+				criteria.addOrder(Order.asc(order));
+			} else {
+				criteria.addOrder(Order.desc(order));
+			}
+		}
+		if (paginacao) {
+			criteria.setFirstResult(rowStart);
+			criteria.setMaxResults(qntdRegistros);
+		}
+		return criteria.list();
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -84,9 +146,10 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 					Field field = fieldlist[i];
 					field.setAccessible(true);
 					Collection coll = null;
-
-					if ((!field.getName().equals("serialVersionUID"))
-							&& (field.get(entity) != null)) {
+					if(field.getName().equals("serialVersionUID")) {
+						continue;
+					}
+					if ((field.get(entity) != null)) {
 						if (field.get(entity) instanceof Collection) {
 							coll = (Collection) field.get(entity);
 						}
