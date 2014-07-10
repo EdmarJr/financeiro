@@ -18,7 +18,7 @@
 					<p:panelGrid columns="3">
 						<h:outputText value="#{msg['incluir.funcionario.campo.empresa']}"
 							for="empresa" />
-						<p:selectOneMenu id="empresa"
+						<h:selectOneMenu  styleClass="form-control" id="empresa"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.empresa}">
 							<f:selectItem itemValue="#{null}"
 								itemLabel="#{msg['label.select']}" noSelectionOption="true" />
@@ -26,32 +26,32 @@
 								value="#{funcionarioEmpresaController.parametros.empresas}"
 								var="empresa" itemValue="#{empresa}"
 								itemLabel="#{empresa.nomeFantasia}" />
-						</p:selectOneMenu>
+						</h:selectOneMenu>
 						<h:message for="empresa" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.nome']}"
+						<h:outputText value="#{msg['incluir.funcionario.campo.nome']}" 
 							for="nome" />
-						<p:inputText id="nome"
+						<h:inputText id="nome" styleClass="form-control"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.nome}" />
 						<h:message for="nome" errorClass="errorMessage" />
 						<h:outputText value="#{msg['incluir.funcionario.campo.email']}"
 							for="email" />
-						<p:inputText id="email"
+						 <h:inputText styleClass="form-control" id="email"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.email}" />
 						<h:message for="email" errorClass="errorMessage" />
 						<h:outputText value="#{msg['incluir.funcionario.campo.setor']}"
 							for="setor" />
-						<p:selectOneMenu id="setor"
+						<h:selectOneMenu  styleClass="form-control" id="setor"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.setorEmpresa}">
 							<f:selectItem itemValue="#{null}"
 								itemLabel="#{msg['label.select']}" noSelectionOption="true" />
 							<f:selectItems
 								value="#{funcionarioEmpresaController.parametros.setores}"
 								var="setor" itemValue="#{setor}" itemLabel="#{setor.descricao}" />
-						</p:selectOneMenu>
+						</h:selectOneMenu >
 						<h:message for="setor" errorClass="errorMessage" />
 						<h:outputText value="#{msg['incluir.funcionario.campo.funcao']}"
 							for="funcao" />
-						<p:selectOneMenu id="funcao"
+						<h:selectOneMenu  styleClass="form-control" id="funcao"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.funcao}">
 							<f:selectItem itemValue="#{null}"
 								itemLabel="#{msg['label.select']}" noSelectionOption="true" />
@@ -59,11 +59,11 @@
 								value="#{funcionarioEmpresaController.parametros.funcoes}"
 								var="funcao" itemValue="#{funcao}"
 								itemLabel="#{funcao.descricao}" />
-						</p:selectOneMenu>
+						</h:selectOneMenu>
 						<h:message for="funcao" errorClass="errorMessage" />
 						<h:outputText value="#{msg['incluir.funcionario.campo.telefone']}"
 							for="telefone" />
-						<p:inputText id="telefone"
+						 <h:inputText styleClass="form-control" id="telefone"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.telefone}" />
 						<h:message for="telefone" errorClass="errorMessage" />
 						<h:outputText value="#{msg['incluir.funcionario.campo.estado']}"
@@ -96,22 +96,22 @@
 						<h:message for="cidade" errorClass="errorMessage" />
 						<h:outputText value="#{msg['incluir.funcionario.campo.cep']}"
 							for="cep" />
-						<p:inputText id="cep"
+						 <h:inputText styleClass="form-control" id="cep"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.cep}" />
 						<h:message for="cep" errorClass="errorMessage" />
 						<h:outputText value="#{msg['incluir.funcionario.campo.endereco']}"
 							for="endereco" />
-						<p:inputText id="endereco"
+						 <h:inputText styleClass="form-control" id="endereco"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.endereco}" />
 						<h:message for="endereco" errorClass="errorMessage" />
 						<h:outputText value="#{msg['incluir.funcionario.campo.rg']}"
 							for="rg" />
-						<p:inputText id="rg"
+						 <h:inputText styleClass="form-control" id="rg"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.rg}" />
 						<h:message for="rg" errorClass="errorMessage" />
 						<h:outputText value="#{msg['incluir.funcionario.campo.cpf']}"
 							for="cpf" />
-						<p:inputText id="cpf"
+						 <h:inputText styleClass="form-control" id="cpf"
 							value="#{funcionarioEmpresaController.funcionarioEmpresa.cpf}" />
 						<h:message for="cpf" errorClass="errorMessage" />
 					</p:panelGrid>
