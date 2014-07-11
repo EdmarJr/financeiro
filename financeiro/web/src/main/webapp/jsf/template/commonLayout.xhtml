@@ -19,7 +19,8 @@
 
 	<!-- Bootstrap core CSS -->
 	<ui:param name="basePath" value="#{request.contextPath}/jsf" />
-	<h:outputScript library="primefaces" name="#{basePath}/template/js/jquery-1.10.2.js" />
+	<h:outputScript library="primefaces"
+		name="#{basePath}/template/js/jquery-1.10.2.js" />
 	<link href="#{basePath}/template/css/bootstrap.min.css"
 		rel="stylesheet" />
 	<link href="#{basePath}/template/css/jsf.css" rel="stylesheet" />
@@ -38,7 +39,13 @@
 	<link href="#{basePath}/template/css/sb-admin.css" rel="stylesheet" />
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<script>
+	$(document).ready(function() {
+		$('select').attr('class','form-control');
+		$('input[type=text]').attr('class','form-control');
+		});
 
+	</script>
 	<h:outputText escape="false"
 		value="&lt;!--[if lt IE 9]&gt; &lt;script src=&quot;https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt; &lt;![endif]--&gt;"></h:outputText>
 </h:head>
@@ -255,9 +262,10 @@
 						<li><a href="index.html"><i class="fa fa-dashboard fa-fw"></i>
 								Dashboard</a></li>
 						<c:forEach items="#{menuController.listaLinks}" var="listaLink">
-					
+
 							<li><a href=" #{listaLink.idLinksMenu.pagina}"><i
-									class="fa fa-dashboard fa-fw"></i> #{listaLink.idLinksMenu.descricao}</a></li>
+									class="fa fa-dashboard fa-fw"></i>
+									#{listaLink.idLinksMenu.descricao}</a></li>
 						</c:forEach>
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								Charts<span class="fa arrow"></span></a>
