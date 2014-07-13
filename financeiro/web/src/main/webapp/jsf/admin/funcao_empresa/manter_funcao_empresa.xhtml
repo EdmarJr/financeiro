@@ -15,32 +15,29 @@
 			<h:form id="principal">
 
 
+				<p:messages id="messages" autoUpdate="true" closable="true" />
+				<p:panelGrid columns="2">
+					<p:outputLabel value=" Lojas :" />
+					<h:selectOneMenu value="#{funcaoMB.empresa}" id="idEmpresa"
+						required="true">
+						<f:selectItem itemLabel="Selecione uma empresa" />
+						<f:ajax event="change" render="listaCargo"
+							listener="#{funcaoMB.listaCargoes()}" />
+						<f:selectItems value="#{empresaMB.empresas}" var="empresa"
+							itemLabel="#{empresa.nomeFantasia}" itemValue="#{empresa}" />
+					</h:selectOneMenu>
+					<p:spacer />
+					<h:message for="idEmpresa" errorClass="errorMessage" />
+					<p:outputLabel value=" Nome da Função :" />
+					<h:inputText id="descricao"
+						value="#{funcaoMB.funcaoEmpresa.descricao}" />
+					<p:spacer />
+					<h:message for="descricao" errorClass="errorMessage" />
+					<p:spacer />
+					<p:commandButton action="#{funcaoMB.adiciona()}"
+						styleClass="btn btn-success" value=" Salvar " update="listaCargo" />
+				</p:panelGrid>
 
-				<p:panel header="Cadastro de Funções" id="painel_cadastro"
-					style="margin-bottom:10px;">
-					<p:messages id="messages" autoUpdate="true" closable="true" />
-					<p:panelGrid columns="1">
-						<p:outputLabel value=" Lojas :" />
-						<p:selectOneMenu value="#{funcaoMB.empresa}" id="idEmpresa"
-							  required="true">
-							<f:selectItem itemLabel="Selecione uma empresa" />
-							<f:ajax event="change" render="listaCargo"
-								listener="#{funcaoMB.listaCargoes()}" />
-							<f:selectItems value="#{empresaMB.empresas}" var="empresa"
-								itemLabel="#{empresa.nomeFantasia}" itemValue="#{empresa}" />
-						</p:selectOneMenu>
-					</p:panelGrid>
-					<p:panelGrid columns="1">
-						<p:outputLabel value=" Nome da Função :" />
-						<h:inputText value="#{funcaoMB.funcaoEmpresa.descricao}" />
-
-					</p:panelGrid>
-				</p:panel>
-				<p:commandButton action="#{funcaoMB.adiciona()}" value=" Salvar "
-					update="listaCargo" />
-
-
-				<h1>Lista de Cargos</h1>
 				<p:dataTable value="#{funcaoMB.funcaoes}" var="cargo"
 					id="listaCargo">
 					<p:column headerText="Nome da cargo">
@@ -55,9 +52,7 @@
 
 					</p:column>
 				</p:dataTable>
-
 			</h:form>
-
 
 			<h:form id="formExcluir">
 

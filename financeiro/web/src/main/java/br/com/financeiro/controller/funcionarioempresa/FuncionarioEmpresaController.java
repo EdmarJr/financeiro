@@ -58,16 +58,23 @@ public class FuncionarioEmpresaController implements Serializable {
 		} else {
 			service.alterar(entidade);
 		}
+		depoisDeTodoComando();
+	}
+
+	private void depoisDeTodoComando() {
+//		RequestContext.getCurrentInstance().execute("afterComando()");
+		setFuncionarioEmpresa(new FuncionarioEmpresa());
 		carregarFuncionariosCadastrados();
 	}
 
 	public void comandoExcluir(FuncionarioEmpresa entidade) {
 		service.excluir(entidade);
-		carregarFuncionariosCadastrados();
+		depoisDeTodoComando();
 	}
 
 	public void comandoAlterar(
 			FuncionarioEmpresa entidadeClicada) {
+		onChangeSelectEstado(entidadeClicada.getEstado());
 		setFuncionarioEmpresa(entidadeClicada);
 	}
 

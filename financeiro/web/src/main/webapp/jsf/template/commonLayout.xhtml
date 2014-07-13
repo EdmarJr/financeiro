@@ -37,15 +37,58 @@
 
 	<!-- SB Admin CSS - Include with every page -->
 	<link href="#{basePath}/template/css/sb-admin.css" rel="stylesheet" />
-
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<script>
-	$(document).ready(function() {
-		$('select').attr('class','form-control');
-		$('input[type=text]').attr('class','form-control');
-		});
+	<style>
+select {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, box-shadow
+		ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
 
-	</script>
+input[type=text] {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, box-shadow
+		ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+table {
+width:100%;
+border: 1px solid #ddd;
+}
+table th{
+background:#f8f8f8;
+border: 1px solid #ddd;
+color: black;
+}
+
+}
+</style>
 	<h:outputText escape="false"
 		value="&lt;!--[if lt IE 9]&gt; &lt;script src=&quot;https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt; &lt;![endif]--&gt;"></h:outputText>
 </h:head>
@@ -322,7 +365,7 @@
 					<!-- /.col-lg-12 -->
 				</div>
 				<!-- /.row -->
-				<div class="container" style="max-width: 100%">
+				<div id="container" class="container" style="max-width: 100%">
 					<ui:insert name="content">
 						<ui:include src="commonContent.xhtml" />
 					</ui:insert>
@@ -337,6 +380,7 @@
 
 		<!-- Core Scripts - Include with every page -->
 		<script src="#{basePath}/template/js/bootstrap.min.js"></script>
+
 		<script
 			src="#{basePath}/template/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 

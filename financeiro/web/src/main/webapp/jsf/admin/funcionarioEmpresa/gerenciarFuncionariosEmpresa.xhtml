@@ -8,141 +8,189 @@
 <ui:composition template="/jsf/template/commonLayout.xhtml">
 	<ui:define name="title">#{msg['incluir.funcionario.titulo']}</ui:define>
 	<ui:define name="content">
-
+		<style>
+#inclusaoFuncionario {
+	border: 1px solid #ddd;
+	padding: 1% 1% 1% 1%;
+}
+</style>
+		<script>
+		function afterComando() {
+			var vis = $("#inclusaoFuncionario").css('visibility');
+			if(vis == "hidden") {
+			} else {
+				$("#inclusaoFuncionario").fadeOut("slow", function() {
+				    $(this).show().css({visibility: "hidden"});
+				    $(".comandoAlterar").show().css({display: "none"});
+				});
+			}
+		}
+		function mostrarInclusaoAlteracao() {
+			var vis = $("#inclusaoFuncionario").css('visibility');
+			if(vis == "hidden") {
+				$("#inclusaoFuncionario").hide().css({visibility: "visible"}).fadeIn("slow");
+				$(".comandoAlterar").hide().css({display: "inline"}).fadeIn("slow");
+			} else {
+				$("#inclusaoFuncionario").fadeOut("slow", function() {
+				    $(this).show().css({visibility: "hidden"});
+				    $(".comandoAlterar").show().css({display: "none"});
+				});
+			}
+		}
+		</script>
 
 		<h:form id="principal">
-			<div class="col-lg-5">
-				<p:panel styleClass="panel panel-success"
-					header="#{msg['incluir.funcionario.titulo.panel.informacoes.funcionario']}"
-					id="painel_cadastro">
-					<p:panelGrid columns="3">
-						<h:outputText value="#{msg['incluir.funcionario.campo.empresa']}"
-							for="empresa" />
-						<h:selectOneMenu  styleClass="form-control" id="empresa"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.empresa}">
-							<f:selectItem itemValue="#{null}"
-								itemLabel="#{msg['label.select']}" noSelectionOption="true" />
-							<f:selectItems
-								value="#{funcionarioEmpresaController.parametros.empresas}"
-								var="empresa" itemValue="#{empresa}"
-								itemLabel="#{empresa.nomeFantasia}" />
-						</h:selectOneMenu>
-						<h:message for="empresa" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.nome']}" 
-							for="nome" />
-						<h:inputText id="nome" styleClass="form-control"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.nome}" />
-						<h:message for="nome" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.email']}"
-							for="email" />
-						 <h:inputText styleClass="form-control" id="email"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.email}" />
-						<h:message for="email" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.setor']}"
-							for="setor" />
-						<h:selectOneMenu  styleClass="form-control" id="setor"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.setorEmpresa}">
-							<f:selectItem itemValue="#{null}"
-								itemLabel="#{msg['label.select']}" noSelectionOption="true" />
-							<f:selectItems
-								value="#{funcionarioEmpresaController.parametros.setores}"
-								var="setor" itemValue="#{setor}" itemLabel="#{setor.descricao}" />
-						</h:selectOneMenu >
-						<h:message for="setor" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.funcao']}"
-							for="funcao" />
-						<h:selectOneMenu  styleClass="form-control" id="funcao"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.funcao}">
-							<f:selectItem itemValue="#{null}"
-								itemLabel="#{msg['label.select']}" noSelectionOption="true" />
-							<f:selectItems
-								value="#{funcionarioEmpresaController.parametros.funcoes}"
-								var="funcao" itemValue="#{funcao}"
-								itemLabel="#{funcao.descricao}" />
-						</h:selectOneMenu>
-						<h:message for="funcao" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.telefone']}"
-							for="telefone" />
-						 <h:inputText styleClass="form-control" id="telefone"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.telefone}" />
-						<h:message for="telefone" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.estado']}"
-							for="estado" />
-						<h:selectOneMenu id="estado" styleClass="form-control"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.estado}">
-							<f:selectItem itemValue="#{null}"
-								itemLabel="#{msg['label.select']}" noSelectionOption="true" />
-							<f:selectItems
-								value="#{funcionarioEmpresaController.parametros.estados}"
-								var="estado" itemValue="#{estado}"
-								itemLabel="#{estado.descricao}" />
-							<p:ajax event="change" update="cidade"
-								listener="#{funcionarioEmpresaController.onChangeSelectEstado(funcionarioEmpresaController.funcionarioEmpresa.estado)}" />
-						</h:selectOneMenu>
-						<h:message for="estado" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.cidade']}"
-							for="cidade" />
-						<h:selectOneMenu id="cidade"
-							disabled="#{empty funcionarioEmpresaController.parametros.cidades}"
-							styleClass="form-control"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.cidade}">
-							<f:selectItem itemValue="#{null}"
-								itemLabel="#{msg['label.select']}" noSelectionOption="true" />
-							<f:selectItems
-								value="#{funcionarioEmpresaController.parametros.cidades}"
-								var="cidade" itemValue="#{cidade}"
-								itemLabel="#{cidade.descricao}" />
-						</h:selectOneMenu>
-						<h:message for="cidade" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.cep']}"
-							for="cep" />
-						 <h:inputText styleClass="form-control" id="cep"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.cep}" />
-						<h:message for="cep" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.endereco']}"
-							for="endereco" />
-						 <h:inputText styleClass="form-control" id="endereco"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.endereco}" />
-						<h:message for="endereco" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.rg']}"
-							for="rg" />
-						 <h:inputText styleClass="form-control" id="rg"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.rg}" />
-						<h:message for="rg" errorClass="errorMessage" />
-						<h:outputText value="#{msg['incluir.funcionario.campo.cpf']}"
-							for="cpf" />
-						 <h:inputText styleClass="form-control" id="cpf"
-							value="#{funcionarioEmpresaController.funcionarioEmpresa.cpf}" />
-						<h:message for="cpf" errorClass="errorMessage" />
-					</p:panelGrid>
-					<h:commandButton value="#{msg['botao.incluir']}"
-						action="#{funcionarioEmpresaController.comandoSalvar(funcionarioEmpresaController.funcionarioEmpresa)}">
-						<f:ajax onevent="true" render="funcionariosDataTable"></f:ajax>
-					</h:commandButton>
-				</p:panel>
-			</div>
+			<div class="table-responsive">
+				<p:dataTable id="funcionariosDataTable"
+					styleClass="table-responsive"
+					value="#{funcionarioEmpresaController.funcionariosCadastrados}"
+					var="funcionario">
 
-			<p:dataTable  id="funcionariosDataTable"
-				value="#{funcionarioEmpresaController.funcionariosCadastrados}"
-				var="funcionario">
-				
-				<p:column
-					headerText="#{msg['gerenciar.funcionario.datatable.coluna.empresa']}">
-					<p:outputLabel value="#{funcionario.empresa.nomeFantasia}" />
-				</p:column>
-				<p:column
-					headerText="#{msg['gerenciar.funcionario.datatable.coluna.nome']}">
-					<p:outputLabel value="#{funcionario.nome}" />
-				</p:column>
-				<p:column
-					headerText="#{msg['gerenciar.funcionario.datatable.coluna.nome']}">
-					<p:outputLabel value="#{funcionario.nome}" />
-				</p:column>
-				<p:column headerText="Ação">
-					<p:commandLink value="alterar" actionListener="#{funcionarioEmpresaController.comandoAlterar(funcionario)}" update=":principal:painel_cadastro"></p:commandLink>
-					<p:commandLink value="excluir" actionListener="#{funcionarioEmpresaController.comandoExcluir(funcionario)}" update=":principal"></p:commandLink>
-				</p:column>
-			</p:dataTable>
+					<p:column
+						headerText="#{msg['gerenciar.funcionario.datatable.coluna.empresa']}">
+						<p:outputLabel value="#{funcionario.empresa.nomeFantasia}" />
+					</p:column>
+					<p:column
+						headerText="#{msg['gerenciar.funcionario.datatable.coluna.nome']}">
+						<p:outputLabel value="#{funcionario.nome}" />
+					</p:column>
+					<p:column
+						headerText="#{msg['incluir.funcionario.campo.email']}">
+						<p:outputLabel value="#{funcionario.email}" />
+					</p:column>
+					<p:column headerText="Ação">
+						<div>
+							<p:commandLink value="alterar"
+								styleClass="btn btn-outline btn-warning comandoAlterar" style="display:none; margin: 1%;"
+								actionListener="#{funcionarioEmpresaController.comandoAlterar(funcionario)}"
+								update=":principal:painel_cadastro"></p:commandLink>
+							<p:commandLink value="excluir" styleClass="btn btn-outline btn-danger" style="margin: 1%;"
+								actionListener="#{funcionarioEmpresaController.comandoExcluir(funcionario)}"
+								update=":principal"></p:commandLink>
+						</div>
+					</p:column>
+				</p:dataTable>
+			</div>
+			<button type="button" name="Incluir/Alterar Usuário"
+				class="btn btn-success" onclick="mostrarInclusaoAlteracao()">#{msg['incluir.funcionario.incluir.alterar.abrir.panel']}</button>
+			<div id="inclusaoFuncionario" style="visibility: hidden;">
+				<p:panelGrid columns="2" styleClass="panelGrid" id="painel_cadastro">
+					<h:outputText value="#{msg['incluir.funcionario.campo.empresa']}"
+						for="empresa" />
+					<h:selectOneMenu styleClass="form-control" id="empresa"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.empresa}">
+						<f:selectItems
+							value="#{funcionarioEmpresaController.parametros.empresas}"
+							var="empresa" itemValue="#{empresa}"
+							itemLabel="#{empresa.nomeFantasia}" />
+					</h:selectOneMenu>
+					<p:spacer />
+					<h:message for="empresa" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.nome']}"
+						for="nome" />
+					<h:inputText id="nome" styleClass="form-control"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.nome}" />
+					<p:spacer />
+					<h:message for="nome" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.email']}"
+						for="email" />
+					<h:inputText styleClass="form-control" id="email"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.email}" />
+					<p:spacer />
+					<h:message for="email" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.setor']}"
+						for="setor" />
+					<h:selectOneMenu styleClass="form-control" id="setor"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.setorEmpresa}">
+						<f:selectItem itemValue="#{null}"
+							itemLabel="#{msg['label.select']}" noSelectionOption="true" />
+						<f:selectItems
+							value="#{funcionarioEmpresaController.parametros.setores}"
+							var="setor" itemValue="#{setor}" itemLabel="#{setor.descricao}" />
+					</h:selectOneMenu>
+					<p:spacer />
+					<h:message for="setor" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.funcao']}"
+						for="funcao" />
+					<h:selectOneMenu styleClass="form-control" id="funcao"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.funcao}">
+						<f:selectItem itemValue="#{null}"
+							itemLabel="#{msg['label.select']}" noSelectionOption="true" />
+						<f:selectItems
+							value="#{funcionarioEmpresaController.parametros.funcoes}"
+							var="funcao" itemValue="#{funcao}"
+							itemLabel="#{funcao.descricao}" />
+					</h:selectOneMenu>
+					<p:spacer />
+					<h:message for="funcao" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.telefone']}"
+						for="telefone" />
+					<h:inputText styleClass="form-control" id="telefone"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.telefone}" />
+					<p:spacer />
+					<h:message for="telefone" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.estado']}"
+						for="estado" />
+					<h:selectOneMenu id="estado" styleClass="form-control"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.estado}">
+						<f:selectItem itemValue="#{null}"
+							itemLabel="#{msg['label.select']}" noSelectionOption="true" />
+						<f:selectItems
+							value="#{funcionarioEmpresaController.parametros.estados}"
+							var="estado" itemValue="#{estado}"
+							itemLabel="#{estado.descricao}" />
+						<p:ajax event="change" update="cidade"
+							listener="#{funcionarioEmpresaController.onChangeSelectEstado(funcionarioEmpresaController.funcionarioEmpresa.estado)}" />
+					</h:selectOneMenu>
+					<p:spacer />
+					<h:message for="estado" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.cidade']}"
+						for="cidade" />
+					<h:selectOneMenu id="cidade"
+						disabled="#{empty funcionarioEmpresaController.funcionarioEmpresa.estado}"
+						styleClass="form-control"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.cidade}">
+						<f:selectItem itemValue="#{null}"
+							itemLabel="#{msg['label.select']}" noSelectionOption="true" />
+						<f:selectItems
+							value="#{funcionarioEmpresaController.parametros.cidades}"
+							var="cidade" itemValue="#{cidade}"
+							itemLabel="#{cidade.descricao}" />
+					</h:selectOneMenu>
+					<p:spacer />
+					<h:message for="cidade" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.cep']}"
+						for="cep" />
+					<h:inputText styleClass="form-control" id="cep"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.cep}" />
+					<p:spacer />
+					<h:message for="cep" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.endereco']}"
+						for="endereco" />
+					<h:inputText styleClass="form-control" id="endereco"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.endereco}" />
+					<p:spacer />
+					<h:message for="endereco" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.rg']}"
+						for="rg" />
+					<h:inputText styleClass="form-control" id="rg"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.rg}" />
+					<p:spacer />
+					<h:message for="rg" errorClass="errorMessage" />
+					<h:outputText value="#{msg['incluir.funcionario.campo.cpf']}"
+						for="cpf" />
+					<h:inputText styleClass="form-control" id="cpf"
+						value="#{funcionarioEmpresaController.funcionarioEmpresa.cpf}" />
+					<p:spacer />
+					<h:message for="cpf" errorClass="errorMessage" />
+					<p:spacer />
+					<h:commandButton value="#{msg['botao.salvar']}"
+						styleClass="btn btn-success"
+						action="#{funcionarioEmpresaController.comandoSalvar(funcionarioEmpresaController.funcionarioEmpresa)}">
+						<f:ajax execute="@form" render="@form"></f:ajax>
+					</h:commandButton>
+				</p:panelGrid>
+			</div>
 		</h:form>
 
 
