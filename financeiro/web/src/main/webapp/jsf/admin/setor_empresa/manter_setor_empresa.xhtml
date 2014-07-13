@@ -22,17 +22,17 @@
 					<p:messages id="messages" autoUpdate="true" closable="true" />
 					<p:panelGrid columns="2">
 						<p:outputLabel value=" Lojas :" />
-						<p:selectOneMenu value="#{setorMB.empresa}" id="idEmpresa"   required="true" >
+						<h:selectOneMenu value="#{setorMB.empresa}" id="idEmpresa"   required="true" >
 							<f:selectItem itemLabel="Selecione uma empresa" />
 							<f:ajax event="change" render="listaSetor" listener="#{setorMB.listaSetores()}" />
 							<f:selectItems value="#{empresaMB.empresas}" var="empresa" itemLabel="#{empresa.nomeFantasia}" itemValue="#{empresa}" />
-						</p:selectOneMenu>
+						</h:selectOneMenu>
 						<p:outputLabel value=" Nome da Setor :" />
 						<h:inputText value="#{setorMB.setorEmpresa.descricao}" />
 
 					</p:panelGrid>
 				</p:panel>
-						<p:commandButton action="#{setorMB.adiciona()}" value=" Salvar " update="listaSetor" />
+						<p:commandButton action="#{setorMB.adiciona()}" styleClass="btn btn-success" value=" Salvar " update="listaSetor" />
 
 
 				<h1>Lista de Setores</h1>

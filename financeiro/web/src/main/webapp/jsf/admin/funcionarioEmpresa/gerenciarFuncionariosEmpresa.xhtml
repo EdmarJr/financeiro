@@ -61,17 +61,17 @@
 					<p:column headerText="Ação">
 						<div>
 							<p:commandLink value="alterar"
-								styleClass="btn btn-outline btn-warning comandoAlterar" style="display:none; margin: 1%;"
+								styleClass="btn btn-warning comandoAlterar" style="display:none; margin: 1%;"
 								actionListener="#{funcionarioEmpresaController.comandoAlterar(funcionario)}"
 								update=":principal:painel_cadastro"></p:commandLink>
-							<p:commandLink value="excluir" styleClass="btn btn-outline btn-danger" style="margin: 1%;"
+							<p:commandLink value="excluir" styleClass="btn btn-danger" style="margin: 1%;"
 								actionListener="#{funcionarioEmpresaController.comandoExcluir(funcionario)}"
 								update=":principal"></p:commandLink>
 						</div>
 					</p:column>
 				</p:dataTable>
 			</div>
-			<button type="button" name="Incluir/Alterar Usuário"
+			<button type="button" name="Incluir/Alterar Funcionário"
 				class="btn btn-success" onclick="mostrarInclusaoAlteracao()">#{msg['incluir.funcionario.incluir.alterar.abrir.panel']}</button>
 			<div id="inclusaoFuncionario" style="visibility: hidden;">
 				<p:panelGrid columns="2" styleClass="panelGrid" id="painel_cadastro">

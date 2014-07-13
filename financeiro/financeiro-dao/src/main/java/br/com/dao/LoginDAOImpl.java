@@ -8,37 +8,35 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.entity.LinkPerfil;
 import br.com.entity.Menu;
 import br.com.entity.Usuario;
 
-
- 
-
-
 public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
-	
+
 	@Override
 	public Usuario recuperarPorId(Long id) {
 		return manager.getReference(Usuario.class, id);
 	}
 
-	
 	public Usuario validaUsuario(Usuario usuario) {
 		try {
-			Query query = manager.createNativeQuery("select x from Usuario x where x.login = :login and x.senha = :senha", Usuario.class);
+			Query query = manager
+					.createNativeQuery(
+							"select x from Usuario x where x.login = :login and x.senha = :senha",
+							Usuario.class);
 			query.setParameter("login", usuario.getEmail());
 			query.setParameter("senha", usuario.getSenha());
-			return (Usuario)query.getSingleResult();
+			return (Usuario) query.getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;	
+		return null;
 	}
-	
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> pesquisar(Usuario usuario) {
@@ -46,16 +44,15 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 		jpql.append("select e from Usuario e ");
 		jpql.append("where e.nome like :nome ");
 		Query query = manager.createQuery(jpql.toString());
-		//query.setParameter("nome", '%' + usuario.getNome() + '%');
+		// query.setParameter("nome", '%' + usuario.getNome() + '%');
 		return query.getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Usuario recuperarPorNome(String nome) {
-		String jpql = "select te from Usuario te "
-					+ "where te.nome = :nome ";
-		
+		String jpql = "select te from Usuario te " + "where te.nome = :nome ";
+
 		Query query = manager.createQuery(jpql);
 		query.setParameter("nome", nome);
 		List<Usuario> lista = query.getResultList();
@@ -69,40 +66,39 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 	public List<Usuario> consultaPagamento(Usuario usuario) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select e from Usuario e where 1 = 1");
-		
+
 		HashMap<String, Object> parametros = new HashMap<String, Object>();
-		/*if(usuario.getNome()!=null && !usuario.getNome().equals("")){
-			sql.append(" and e.nome like :nome");
-			parametros.put("nome", "%"+usuario.getNome()+"%");
-		}if(usuario.getTipoPagamento()!=null && usuario.getTipoPagamento().getId()>0){
-			sql.append(" and e.tipoPagamento=:tipoPagamento");
-			parametros.put("tipoPagamento", usuario.getTipoPagamento());
-		}if(usuario.getDataInicio()!=null){
-			sql.append(" and e.dataInicio>=:dataInicio");
-			parametros.put("dataInicio", usuario.getDataInicio());
-		}if(usuario.getDataFim()!=null){
-			sql.append(" and e.dataFim<=:dataFim");
-			parametros.put("dataFim", usuario.getDataFim());
-		}if(usuario.getStatus()!='\0'){
-			sql.append(" and e.status=:status");
-			parametros.put("status", usuario.getStatus());
-		}if(usuario.getLocal()!=null && usuario.getLocal().getId()>0){
-			sql.append(" and e.local=:local");
-			parametros.put("local", usuario.getStatus());
-		}*/
+		/*
+		 * if(usuario.getNome()!=null && !usuario.getNome().equals("")){
+		 * sql.append(" and e.nome like :nome"); parametros.put("nome",
+		 * "%"+usuario.getNome()+"%"); }if(usuario.getTipoPagamento()!=null &&
+		 * usuario.getTipoPagamento().getId()>0){
+		 * sql.append(" and e.tipoPagamento=:tipoPagamento");
+		 * parametros.put("tipoPagamento", usuario.getTipoPagamento());
+		 * }if(usuario.getDataInicio()!=null){
+		 * sql.append(" and e.dataInicio>=:dataInicio");
+		 * parametros.put("dataInicio", usuario.getDataInicio());
+		 * }if(usuario.getDataFim()!=null){
+		 * sql.append(" and e.dataFim<=:dataFim"); parametros.put("dataFim",
+		 * usuario.getDataFim()); }if(usuario.getStatus()!='\0'){
+		 * sql.append(" and e.status=:status"); parametros.put("status",
+		 * usuario.getStatus()); }if(usuario.getLocal()!=null &&
+		 * usuario.getLocal().getId()>0){ sql.append(" and e.local=:local");
+		 * parametros.put("local", usuario.getStatus()); }
+		 */
 
-		List<? extends Object> listaPagamento = executarQueryJPQL(sql.toString(), parametros);
-		return (List<Usuario>)listaPagamento;
-		
+		List<? extends Object> listaPagamento = executarQueryJPQL(
+				sql.toString(), parametros);
+		return (List<Usuario>) listaPagamento;
+
 	}
-
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usuario> listar(Date dataInicio, Date dataFim) {
 		List<Usuario> lista = new ArrayList<Usuario>();
 		String lcQuery = "select x from Usuario x where 1=1";
-		if (dataInicio != null ) {
+		if (dataInicio != null) {
 			lcQuery += " where date(x.dataCompra)>=date(:dataInicio)";
 		}
 		if (dataFim != null) {
@@ -110,8 +106,8 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 		}
 		lcQuery += " order by x.dataCompra desc";
 		Query query = this.manager.createNativeQuery(lcQuery, Usuario.class);
-		
-		if (dataInicio != null ) {
+
+		if (dataInicio != null) {
 			query.setParameter("dataInicio", dataInicio);
 		}
 		if (dataFim != null) {
@@ -124,26 +120,32 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Menu> listaMenuPerfil(Usuario usuario) {
-		Query query = manager.createNativeQuery("select x from Menu x where x.idPerfilusuario = :perfil", Menu.class);
-//		query.setParameter("perfil", usuario.getIdPerfilUsuario());
-		return (List<Menu>)query.getResultList();
+		Query query = manager.createNativeQuery(
+				"select x from Menu x where x.idPerfilusuario = :perfil",
+				Menu.class);
+		// query.setParameter("perfil", usuario.getIdPerfilUsuario());
+		return (List<Menu>) query.getResultList();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<LinkPerfil> listaLinks(Usuario usuario) {
-		
+
 		Criteria criteria = obterCriteria(LinkPerfil.class);
-		criteria.add(Restrictions.eq("idPerfilusuario",usuario.getIdPerfilUsuario()));
-//		criteria.addOrder(Order.asc("linkMenu.menu"));
-		return criteria.list();
+		criteria.add(Restrictions.eq("idPerfilusuario",
+				usuario.getIdPerfilUsuario()));
+		List<LinkPerfil> listaLinks = criteria.list();
+		for (LinkPerfil l : listaLinks) {
+			Hibernate.initialize(l.getIdLinksMenu().getIdMenu().getLinksMenu());
+		}
+		return listaLinks;
 	}
-	
-/*	public List<PerfilUsuario> listaPerfilPorLoja(Loja loja) {
-		Query query = manager.createNativeQuery("select x from PerfilUsuario x "
-				+ " order by x.descricao", PerfilUsuario.class);
-		List<PerfilUsuario> lista = (List<PerfilUsuario>)query.getResultList();
-		return lista;
-	}*/
+
+	/*
+	 * public List<PerfilUsuario> listaPerfilPorLoja(Loja loja) { Query query =
+	 * manager.createNativeQuery("select x from PerfilUsuario x " +
+	 * " order by x.descricao", PerfilUsuario.class); List<PerfilUsuario> lista
+	 * = (List<PerfilUsuario>)query.getResultList(); return lista; }
+	 */
 
 	@Override
 	public Usuario obterUsuarioPorLogin(String login) {
@@ -152,9 +154,4 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 		return (Usuario) criteria.uniqueResult();
 	}
 
-
-
-	
-	
-	
 }

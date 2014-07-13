@@ -56,6 +56,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		return criteria.list();
 		
 	}
+	
 
 	@Override
 	public T sincronizar(T entity) {
