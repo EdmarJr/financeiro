@@ -134,9 +134,6 @@ public class LoginDAOImpl extends GenericDAOImpl<Usuario> implements LoginDAO {
 		criteria.add(Restrictions.eq("idPerfilusuario",
 				usuario.getIdPerfilUsuario()));
 		List<LinkPerfil> listaLinks = criteria.list();
-		for (LinkPerfil l : listaLinks) {
-			Hibernate.initialize(l.getIdLinksMenu().getIdMenu().getLinksMenu());
-		}
 		return listaLinks;
 	}
 

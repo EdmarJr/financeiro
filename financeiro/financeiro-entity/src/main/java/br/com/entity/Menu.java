@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,8 +24,7 @@ public class Menu {
 	
 	private String descricao;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name="idLinksMenu")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="idMenu")
 	private List<Link> linksMenu = new ArrayList<Link>();
 	
 

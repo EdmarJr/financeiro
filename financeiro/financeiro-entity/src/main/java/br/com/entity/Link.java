@@ -19,7 +19,7 @@ public class Link {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name="idMenu")
+	@JoinColumn(name="idMenu", referencedColumnName="idMenu")
 	private Menu idMenu = new Menu();
 	
 	

@@ -16,6 +16,7 @@ import br.com.entity.LinkPerfil;
 import br.com.entity.Menu;
 import br.com.entity.Usuario;
 import br.com.financeiro.service.LoginService;
+import br.com.financeiro.service.MenuService;
 import br.com.financeiro.service.UsuarioService;
 
 @Named
@@ -27,6 +28,8 @@ public class MenuController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private LoginService loginService;
+	@EJB
+	private MenuService menuService;
 	@EJB
 	private UsuarioService usuarioService;
 	private List<LinkPerfil> listaLinks;
