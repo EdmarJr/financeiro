@@ -38,39 +38,35 @@ public class MenuController implements Serializable {
 
 		@Override
 		public int compare(Menu o1, Menu o2) {
-			if(o1.getId().toString().equals(o2.getId().toString())) {
+			if (o1.getId().toString().equals(o2.getId().toString())) {
 				return 0;
 			}
 			return 1;
 		}
 	});
-	
+
 	@PostConstruct
 	private void inicializar() {
 		listaLinks = new ArrayList<LinkPerfil>();
 		usuarioLogado = usuarioService.obterUsuarioLogado();
-		if (listaLinks == null || listaLinks.isEmpty()) {
-			listaLinks = loginService.listaLinks(usuarioLogado);
-		}
-		for(LinkPerfil links : listaLinks) {
-			Menu menu = links.getIdLinksMenu().getIdMenu();
-			menus.add(menu);
+		if (usuarioLogado != null) {
+			if (listaLinks == null || listaLinks.isEmpty()) {
+				listaLinks = loginService.listaLinks(usuarioLogado);
+			}
+			for (LinkPerfil links : listaLinks) {
+				Menu menu = links.getIdLinksMenu().getIdMenu();
+				menus.add(menu);
+			}
 		}
 	}
-	
-	
-	
+
 	public Set<Menu> getMenus() {
 		return menus;
 	}
 
-
-
 	public void setMenus(Set<Menu> menus) {
 		this.menus = menus;
 	}
-
-
 
 	public List<LinkPerfil> getListaLinks() {
 		return listaLinks;
