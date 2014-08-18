@@ -39,7 +39,7 @@ public abstract class BasicoMB implements Serializable {
 	}
 	
 	public void retornaMensagemSucessoOperacao(){
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Opera��o realizada com sucesso","Opera��o realizada com sucesso"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Operação realizada com sucesso","Operação realizada com sucesso"));
 	}
 	
 	public void retornaMensagemErro(String mensagem){

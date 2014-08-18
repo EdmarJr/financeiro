@@ -17,16 +17,15 @@
  
 	 <h:form id="principal">
 
-				<p:panel header="Cadastro de Funcionario" id="painel_cadastro" style="margin-bottom:10px;" >
+				<p:panel header="Configurar perfis" id="painel_cadastro" style="margin-bottom:10px;" >
 					<p:messages id="messages" autoUpdate="true" closable="true" />
 					
 					<p:panelGrid columns="2" style="width:100%" >
 						
-						<p:outputLabel value=" Funcionário :" />
-						<p:selectOneMenu value="#{manterPerfilMB.idPerfilUsuario}" id="idPerfilUsuario">
+						<p:selectOneMenu value="#{manterPerfilMB.perfilUsuario}" id="idPerfilUsuario">
 							<f:selectItem itemLabel="Selecione um perfil" />
 							<f:ajax event="change" render="listaLinks" listener="#{manterPerfilMB.listaLinksPerfis()}" />
-							<f:selectItems value="#{manterPerfilMB.perfilUsuario}" var="prod" itemLabel="#{prod.descricao}" itemValue="#{prod.id}" />
+							<f:selectItems value="#{manterPerfilMB.listaPerfilUsuario}" var="prod" itemLabel="#{prod.descricao}" itemValue="#{prod}" />
 						</p:selectOneMenu>
 					</p:panelGrid>
 
@@ -34,11 +33,13 @@
 						
 
 
-	 <p:dataTable value ="#{manterPerfilMB.listaMenuPerfil}" var ="gasto" id="listaLinks">
+	 <p:dataTable value ="#{manterPerfilMB.listaMenu}" var ="perfil" id="listaLinks">
 	 	<f:facet name="header">  
             Lista de Links
         </f:facet> 
-        
+        <p:column headerText="#{msg['gerenciar.perfis.datatable.coluna.link']}">
+			<p:outputLabel value="#{perfil.descricao}" />
+		</p:column>
 	 </p:dataTable>
 
 	 </h:form>

@@ -15,6 +15,11 @@ import br.com.financeiro.service.LoginService;
 @ManagedBean
 public class LoginMB extends BasicoMB{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7839716487957894350L;
+
 	@EJB
 	private LoginService loginService;
 	

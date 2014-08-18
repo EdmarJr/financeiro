@@ -1,5 +1,7 @@
 package br.com.financeiro.service;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -21,6 +23,10 @@ public class MenuService extends Service<Menu> {
 	@Override
 	public MenuDAO getDAO() {
 		return dao;
+	}
+
+	public List<Menu> listaTodos() {
+		return dao.recuperarTodos(Menu.class);
 	}
 
 }

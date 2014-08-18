@@ -39,7 +39,18 @@
         <module>financeiro-entity</module>
         <module>financeiro-dao</module>
     </modules>
+	<repositories>
+		<repository>
+			<id>my-alternate-repository</id>
+			<url>http://myrepo.net/repo</url>
+		</repository>
+		<repository>
+			<id>mvnrepository</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		
 
+	</repositories>
     <properties>
         <!-- Explicitly declaring the source encoding eliminates the following 
             message: -->
@@ -73,8 +84,8 @@
         <version.war.plugin>2.1.1</version.war.plugin>
 
         <!-- maven-compiler-plugin -->
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
     </properties>
 
     <dependencyManagement>

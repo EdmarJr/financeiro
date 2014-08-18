@@ -68,7 +68,7 @@
 		<auth-method>FORM</auth-method>
 		<form-login-config>
 			<form-login-page>/jsf/login/login.xhtml</form-login-page>
-			<form-error-page>/error.xhtml</form-error-page>
+			<form-error-page>/jsf/login/login.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
 
